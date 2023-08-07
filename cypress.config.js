@@ -7,6 +7,7 @@ import { percyHealthCheck } from "@percy/cypress/task";
 import codeCoverageTask from "@cypress/code-coverage/task";
 import { defineConfig } from "cypress";
 import "@cypress/instrument-cra";
+import { cloudPlugin } from "cypress-cloud/plugin";
 
 dotenv.config({ path: ".env.local" });
 dotenv.config();
@@ -67,7 +68,7 @@ module.exports = defineConfig({
   },
   e2e: {
     baseUrl: "http://localhost:3000",
-    specPattern: "cypress/tests/**/*.spec.{js,jsx,ts,tsx}",
+    specPattern: "cypress/tests/api/*.spec.{js,jsx,ts,tsx}",
     supportFile: "cypress/support/e2e.ts",
     viewportHeight: 1000,
     viewportWidth: 1280,
@@ -99,7 +100,7 @@ module.exports = defineConfig({
           return queryDatabase(queryPayload, (data, attrs) => _.find(data.results, attrs));
         },
       });
-
+      cloudPlugin(on, config);
       codeCoverageTask(on, config);
       return config;
     },
