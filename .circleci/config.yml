@@ -10,7 +10,6 @@ executors:
       - image: "cypress/browsers:node16.16.0-chrome105-ff104-edge"
     resource_class: large
     environment:
-      PERCY_TOKEN:
       CYPRESS_coverage: false
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Commands ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
